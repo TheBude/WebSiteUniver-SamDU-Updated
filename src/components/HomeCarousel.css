@@ -1,0 +1,213 @@
+.home-carousel {
+  position: relative;
+  width: 100%;
+  min-height: 380px;
+  height: clamp(380px, 45vw, 560px);
+  margin-top: 24px;
+  overflow: hidden;
+  border-radius: 12px;
+  color: #fff;
+  background: #152343;
+  isolation: isolate;
+  user-select: none;
+}
+
+/* Slayd, rasm va qoraytirish foni */
+.home-carousel__slide,
+.home-carousel__image,
+.home-carousel__shade {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.home-carousel__slide--next {
+  animation: carousel-enter-right 600ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
+}
+
+.home-carousel__slide--previous {
+  animation: carousel-enter-left 600ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
+}
+
+.home-carousel__image {
+  object-fit: cover;
+  object-position: center;
+}
+
+.home-carousel__shade {
+  background: linear-gradient(
+    90deg,
+    rgba(9, 20, 43, 0.88) 0%,
+    rgba(9, 20, 43, 0.65) 45%,
+    rgba(9, 20, 43, 0.15) 100%
+  );
+}
+
+/* Slayd ustidagi matnlar bloki */
+.home-carousel__content {
+  position: absolute;
+  z-index: 5;
+  top: 50%;
+  left: clamp(32px, 7vw, 90px);
+  max-width: 620px;
+  width: calc(100% - 120px);
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.home-carousel__category {
+  margin: 0 0 12px;
+  color: #93c5fd;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.home-carousel__content h2 {
+  margin: 0;
+  font-size: clamp(24px, 3.2vw, 42px);
+  line-height: 1.2;
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+/* Sichqoncha olib boriladigan chap va o'ng navigatsiya zonalari */
+.home-carousel__nav-zone {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 18%;
+  min-width: 80px;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.home-carousel__nav-zone--left {
+  left: 0;
+  justify-content: flex-start;
+  padding-left: 24px;
+}
+
+.home-carousel__nav-zone--right {
+  right: 0;
+  justify-content: flex-end;
+  padding-right: 24px;
+}
+
+/* Shaffof strelka tugmalari */
+.home-carousel__arrow-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1.5px solid rgba(255, 255, 255, 0.45);
+  color: #ffffff;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: scale(0.85);
+  transition: all 0.25s ease-in-out;
+  cursor: pointer;
+  backdrop-filter: blur(2px);
+  user-select: none;
+}
+
+/* Sichqoncha maydonga borganida strelka paydo bo'ladi */
+.home-carousel__nav-zone:hover .home-carousel__arrow-btn {
+  opacity: 0.85;
+  transform: scale(1);
+}
+
+/* Sichqoncha bevosita tugma ustiga borganida */
+.home-carousel__arrow-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #ffffff;
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/* Pastdagi indikatorlar (Dots) */
+.home-carousel__footer {
+  position: absolute;
+  z-index: 10;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.home-carousel__controls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.home-carousel__dot {
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.45);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.home-carousel__dot.is-active {
+  width: 28px;
+  border-radius: 6px;
+  background: #ffffff;
+}
+
+/* O'ngdan va chapdan kirish animatsiyalari */
+@keyframes carousel-enter-right {
+  from {
+    opacity: 0.3;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes carousel-enter-left {
+  from {
+    opacity: 0.3;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Mobil qurilmalar uchun moslashuv */
+@media (max-width: 640px) {
+  .home-carousel {
+    min-height: 280px;
+  }
+  .home-carousel__content {
+    left: 20px;
+    width: calc(100% - 40px);
+  }
+  .home-carousel__arrow-btn {
+    opacity: 0.85;
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+  }
+  .home-carousel__nav-zone--left {
+    padding-left: 10px;
+  }
+  .home-carousel__nav-zone--right {
+    padding-right: 10px;
+  }
+}

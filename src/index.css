@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+:root {
+  font-family: Inter, 'Segoe UI', sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: light;
+  --page-background: #f8fafc;
+  --page-foreground: #0f172a;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:root.dark-mode {
+  color-scheme: dark;
+  --page-background: #111827;
+  --page-foreground: #f8fafc;
+}
+
+:root.vision-mode {
+  color-scheme: dark;
+  font-size: 112.5%;
+  --page-background: #000;
+  --page-foreground: #fff;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  color: var(--page-foreground);
+  background:
+    radial-gradient(circle at top, rgba(59, 130, 246, 0.12), transparent 35%),
+    var(--page-background);
+}
+
+.site-shell {
+  min-height: 100vh;
+  color: var(--page-foreground);
+  background-color: var(--page-background);
+}
+
+:root.dark-mode body {
+  background:
+    radial-gradient(circle at top, rgba(59, 130, 246, 0.08), transparent 35%),
+    var(--page-background);
+}
+
+:root.vision-mode body {
+  background: var(--page-background);
+}
+
+:root.vision-mode :focus-visible {
+  outline: 3px solid #ffeb3b !important;
+  outline-offset: 3px;
+}
+
+:root.vision-mode a {
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+
+/* ========================================================
+   Scroll Reveal Animation (IntersectionObserver support)
+   ======================================================== */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.scroll-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
